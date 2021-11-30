@@ -2,5 +2,22 @@
 title: "Game show data"
 output: html_notebook
 ---
-read.csv('20060455_Data.csv')
-
+```{r}
+data<-read.csv('../20060455_Data.csv')
+# clean dataset externally with excel
+data$Gender_m <- ifelse(data$Gender == "M", 1,0)
+data$Gender_f <- ifelse(data$Gender == "F", 1,0)
+data$Education_h <- ifelse(data$Education == "H", 1,0)
+data$Education_l <- ifelse(data$Education == "L", 1,0)
+data$Deal...No.Deal_D <- ifelse(data$Deal...No.Deal == "D", 1,0)
+data$Deal...No.Deal_ND <- ifelse(data$Deal...No.Deal == "ND", 1,0)
+numeric_data<-subset(data, select= -c(ID.Number, Broadcast.Date, Name, Education, Gender, Deal...No.Deal))
+summary(data)
+```
+```{r}
+summary(numeric_data)
+```
+```{r}
+cor(numeric_data)
+heatmap(cor(numeric_data))
+```
