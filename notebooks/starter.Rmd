@@ -21,3 +21,38 @@ summary(numeric_data)
 cor(numeric_data)
 heatmap(cor(numeric_data))
 ```
+
+```{r}
+no_rounds<-subset(numeric_data, select = -c(X0.01, X0.2, X0.5, X1, X5, X10, X20, X50, X100, X500, X1000, X2500, X5000, X7500, X10000, X25000, X50000, X75000, X100000, X200000, X300000, X400000, X500000, X1000000, X2500000, X5000000))
+heatmap(cor(no_rounds))
+```
+
+
+
+
+```{r}
+prediction_one<-lm(Amount.Won ~ Age+Stop.Round+Gender_f+Gender_m+Education_h+Education_l, data=no_rounds)
+summary(prediction_one)
+```
+
+
+
+
+```{r}
+cleaned<-read.csv('../gameData_clean.csv')
+summary(cleaned)
+prediction_two<-lm(Amount.Won ~ Age+Stop.Round+Education+Gender, data=no_rounds)
+summary(prediction_two)
+```
+
+
+
+
+
+
+
+
+
+
+
+
